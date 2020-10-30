@@ -15,6 +15,9 @@ function init()
 
     setInterval(gameLoop, interval);
 
+    window.addEventListener("touchstart", handleTouchStart, false);
+    window.addEventListener("touchmove", handleTouchMove, false);
+
     window.addEventListener("keydown", function (event) 
     {
         if (event.defaultPrevented) 
@@ -42,6 +45,49 @@ function init()
     initSnake();
     placeApple();
     
+};
+
+var xOn = null;                                                        
+var yOn = null;
+
+function getTouches(event) {
+  return event.touches ||             // browser API
+         event.originalEvent.touches; // jQuery
+}                                                     
+
+function handleTouchStart(event) {
+    const firstTouch = getTouches(event)[0];                                      
+    xOn = firstTouch.clientX;                                      
+    yOn = firstTouch.clientY;                                      
+};                                                
+
+function handleTouchMove(evt) {
+    if ( ! xOn || ! yOn ) {
+        return;
+    }
+
+    var xOff = evt.touches[0].clientX;                                    
+    var yOff = evt.touches[0].clientY;
+
+    var xDiff = xOn - xOff;
+    var yDiff = yOn - yOff;
+
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        if ( xDiff > 0 ) {
+            direction = 2;
+        } else {
+            direction = 0;
+        }                       
+    } else {
+        if ( yDiff > 0 ) {
+            direction = 3;
+        } else { 
+            direction = 1;
+        }                                                                 
+    }
+    
+    xDown = null;
+    yDown = null;                                             
 };
 
 function initCanvas()
