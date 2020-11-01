@@ -109,6 +109,11 @@ function initCanvas()
     ctx.fillRect(0, 0, width, height);
 };
 
+function setScore( newScore )
+{
+    document.getElementById("score").innerHTML = newScore;
+}
+
 function initSnake()
 {
     snake.push(new snakeSegment(17,20));
@@ -253,6 +258,7 @@ function gameLoop()
 {
     moveSnake(direction);
     collision();
+    setScore(snake.length);
     draw();
 }
 
