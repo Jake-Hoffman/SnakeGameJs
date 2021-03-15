@@ -1,3 +1,3 @@
 # Snake Game in JavaScript
 
-[Link](https://jakethoffman.com/webProjects/JsSnake/index.html) to the page
+[Link](https://jakethoffman.com/webProjects/SnakeGameJs/index.html) to the page
